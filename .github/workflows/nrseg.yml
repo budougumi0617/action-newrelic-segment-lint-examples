@@ -1,0 +1,14 @@
+name: nrseg
+on: [pull_request]
+jobs:
+  linter_name:
+    name: runner / nrseg inspect
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: budougumi0617/action-newrelic-segment-lint@v0
+        with:
+          github_token: ${{ secrets.github_token }}
+          fail_on_error: true
+          level: "error"
+          nrseg_flags: "-i testing ./"
